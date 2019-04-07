@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-export class NewsItem extends Component {
+class NewsItem extends Component {
   getStyle = () => {
     return {
       background: '#f4f4f4',
@@ -11,13 +11,14 @@ export class NewsItem extends Component {
   }
   
   render() {
-    const { title } = this.props.thenews;
+    const { title, description } = this.props.thenews;
 
     return (
       <div style={this.getStyle()}>
         <p>
-          { title }
-        </p>        
+          <strong>{ title }</strong><br/>
+          { description }
+        </p>
       </div>
     )
   }
