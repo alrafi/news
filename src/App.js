@@ -1,17 +1,35 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import News from './components/News';
+import Detail from './components/pages/Detail';
+import GetCategory from './components/GetCategory';
 import './App.css';
 import Axios from 'axios';
-import GetCategory from './components/GetCategory';
+
+class Home extends Component {
+  render() {
+    return (
+      <React.Fragment>
+        <GetCategory onSubmit={this.props.getCategory} />
+        <News 
+          news={this.props.news} 
+          onSubmit={this.props.getCategory} 
+          onChangeIndex={this.props.changeSelectedIndex} 
+        />
+      </React.Fragment>              
+    )
+  }
+}
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      news:[]
+      news:[],
+      selectedIndex: 0
     };
     this.getCategory = this.getCategory.bind(this);
+    this.changeSelectedIndex = this.changeSelectedIndex.bind(this)
   }
 
   componentDidMount() {
@@ -32,21 +50,33 @@ class App extends Component {
       this.setState({ news: res.data.articles })
     });
   }
+  
+  changeSelectedIndex(index) {
+    this.setState({ selectedIndex: index })
+  }
 
   render() {
     return (
-      <Router>
-        <div className="App">
+      <div className="App">
         <div className="container">
-          <Route exact path="/" render={props => (
-              <React.Fragment>
-                <GetCategory onSubmit={this.getCategory} />
-                <News news={this.state.news} onSubmit={this.getCategory} />
-              </React.Fragment>              
-          )} />
+          <Router>
+            <Switch>
+              <Route exact path="/" component={(props) => 
+                <Home 
+                  {...props} 
+                  changeSelectedIndex={this.changeSelectedIndex} 
+                  getCategory={this.getCategory}
+                  news={this.state.news}
+                  />} 
+                />
+              <Route 
+                path="/detail" 
+                component={(props) => <Detail {...props} news={this.state.news[this.state.selectedIndex]} />} 
+              />
+            </Switch>
+          </Router>
         </div>
-        </div>
-      </Router>
+      </div>
     );
   }
 }
