@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { withRouter } from "react-router-dom";
 
 class NewsItem extends Component {
   getStyle = () => {
@@ -15,10 +16,12 @@ class NewsItem extends Component {
 
     return (
       <div style={this.getStyle()}>
-        <p>
-          <strong>{ title }</strong><br/>
+        <div>
+          <p onClick={() => {this.props.changeSelectedIndex(this.props.index); this.props.history.push('/detail');}}>
+            <strong>{ title }</strong><br/>
+          </p>
           { description }
-        </p>
+        </div>
       </div>
     )
   }
@@ -26,7 +29,8 @@ class NewsItem extends Component {
 
 // PropTypes
 NewsItem.propTypes = {
-  thenews: PropTypes.object.isRequired
+  thenews: PropTypes.object.isRequired,
+  changeSelectedIndex: PropTypes.func.isRequired
 }
 
-export default NewsItem
+export default withRouter(NewsItem)
