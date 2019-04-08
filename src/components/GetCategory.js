@@ -26,7 +26,7 @@ export class GetCategory extends Component {
         <form onSubmit={this.getCategory}>
         <label>
           Category:
-          <input className="movieName" type="text" value={this.state.value} onChange={this.handleChange} />
+          <input placeholder="input category" className="movieName" type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
         <input type="submit" value="Search" />
         </form>
