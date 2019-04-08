@@ -35,7 +35,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    Axios.get('https://newsapi.org/v2/top-headlines?country=us&apiKey=1d5278d48fb74542922ba3c7dc6c7d56')
+    Axios.get('https://newsapi.org/v2/top-headlines?country=us&pageSize=15&apiKey=1d5278d48fb74542922ba3c7dc6c7d56')
     .then(res => {
       this.setState({
         news: res.data.articles
@@ -45,7 +45,7 @@ class App extends Component {
 
   getCategory(value) {
     let category = value;
-    let requestUrl = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=1d5278d48fb74542922ba3c7dc6c7d56&category=' + category;
+    let requestUrl = 'https://newsapi.org/v2/top-headlines?country=us&pageSize=15&apiKey=1d5278d48fb74542922ba3c7dc6c7d56&category=' + category;
 
     Axios.get(requestUrl)
     .then(res => {
@@ -63,6 +63,7 @@ class App extends Component {
         <div className="container">
           <Router>
           <Header />
+          <p>Category Available: Business | Sports | Entertainment | Politics | Health | Technology | Science</p>
             <Switch>
               <Route exact path="/" component={(props) => 
                 <Home 
