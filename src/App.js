@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import News from './components/News';
 import Detail from './components/pages/Detail';
 import GetCategory from './components/GetCategory';
+import Header from './components/layout/Header';
+import About from './components/pages/About';
 import './App.css';
 import Axios from 'axios';
 
@@ -60,6 +62,7 @@ class App extends Component {
       <div className="App">
         <div className="container">
           <Router>
+          <Header />
             <Switch>
               <Route exact path="/" component={(props) => 
                 <Home 
@@ -72,6 +75,10 @@ class App extends Component {
               <Route 
                 path="/detail" 
                 component={(props) => <Detail {...props} news={this.state.news[this.state.selectedIndex]} />} 
+              />
+              <Route
+                path="/about"
+                component={About}
               />
             </Switch>
           </Router>

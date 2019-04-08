@@ -25,11 +25,10 @@ export class GetCategory extends Component {
     return (
         <form onSubmit={this.getCategory}>
         <label>
-          Name:
+          Category:
           <input className="movieName" type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
-        <input type="submit" value="Submit" />
-        <h1>{this.state.value}</h1>
+        <input type="submit" value="Search" />
         </form>
     )
   }
