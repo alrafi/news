@@ -63,7 +63,7 @@ class App extends Component {
         <div className="container">
           <Router>
           <Header />
-          <p>Category Available: Business | Sports | Entertainment | Politics | Health | Technology | Science</p>
+          <p>Available Category: Business | Sports | Entertainment | Politics | Health | Technology | Science</p>
             <Switch>
               <Route exact path="/" component={(props) => 
                 <Home 
