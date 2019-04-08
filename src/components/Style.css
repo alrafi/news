@@ -1,0 +1,8 @@
+h2 {
+  color: #000;
+}
+
+h2:hover {
+  color: #333;
+  cursor: pointer;
+}
