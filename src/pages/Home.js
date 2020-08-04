@@ -16,7 +16,7 @@ class Home extends Component {
 
   componentDidMount() {
     Axios.get(
-      'https://newsapi.org/v2/top-headlines?country=us&pageSize=15&apiKey=1d5278d48fb74542922ba3c7dc6c7d56'
+      `https://newsapi.org/v2/top-headlines?country=us&pageSize=15&apiKey=${process.env.REACT_APP_APIKEY}`
     ).then((res) => {
       this.setState({
         news: res.data.articles,
@@ -26,9 +26,7 @@ class Home extends Component {
 
   getCategory(value) {
     let category = value;
-    let requestUrl =
-      'https://newsapi.org/v2/top-headlines?country=us&pageSize=15&apiKey=1d5278d48fb74542922ba3c7dc6c7d56&category=' +
-      category;
+    let requestUrl = `https://newsapi.org/v2/top-headlines?country=us&pageSize=15&apiKey=${process.env.REACT_APP_APIKEY}6&category=${category}`;
     Axios.get(requestUrl).then((res) => {
       this.setState({ news: res.data.articles });
     });
